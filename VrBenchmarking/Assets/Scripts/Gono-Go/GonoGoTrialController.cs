@@ -5,58 +5,34 @@ using UXF;
 
 public class GonoGoTrialController : MonoBehaviour
 {
-
-    public GameObject observe;
-    public Material red;
-    public Material green;
-    public int randomSeed;
-    public Session session;
-
-    private Material mat;
-
-    private void Awake()
-    {
-        mat = observe.GetComponent<MeshRenderer>().material;
-    }
+    public GameObject observeGreen;
+    public UXF.Session session;
     /*
     - OnTriggerEnter, if stick and no Trial, function BeginTrial()
     - OnTriggerEnter, if stick and current trial, record Outcome and trial duration, end trial, function BeginTrial()
     - function BeginTrial() = Observe disapper for a duration, start trial, Observe appear
     */
+    IEnumerator ObserveDisappearDuration()
+    {
+        float timeForObserveObjectDisappear = session.CurrentTrial.settings.GetFloat("observe_disappear_duration");
+        yield return new WaitForSeconds(timeForObserveObjectDisappear);
+        session.BeginNextTrialSafe();
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Stick") && !session.InTrial )
+        if (other.gameObject.CompareTag("Stick") && !session.InTrial && session.currentTrialNum == 0) //start trial one
         {
-            BeginTrial();
+            session.NextTrial.Begin();
         }
-        if (other.gameObject.CompareTag("Stick") && session.InTrial)
+        else if (other.gameObject.CompareTag("Stick") && session.InTrial)
         {
+            
             session.CurrentTrial.result["outcome"] = "go";
-            session.CurrentTrial.result["light"] = mat.color.ToString();
+            session.CurrentTrial.result["light"] = observeGreen.activeSelf ? "green":"red";
             session.EndCurrentTrial();
-            BeginTrial();
-        }
-    }
-    IEnumerator Countdown()
-    {
-        float timeForObserveObjectDisappear = 1f;
-        yield return new WaitForSeconds(timeForObserveObjectDisappear);
-    }
-    private void BeginTrial()
-    {
-        //brief delay to separate object appearence from previous trial
-        StartCoroutine(Countdown());
-        //change to object to a certain color
-        Random.InitState(randomSeed);
-        if (Random.value.Equals(1.0))
-        {
-            mat = green;
-        }
-        else
-        {
-            mat = red;
-        }
+            //brief delay to separate object appearence from previous trial
 
-        session.BeginNextTrial();
+            StartCoroutine(ObserveDisappearDuration());
+        }
     }
 }

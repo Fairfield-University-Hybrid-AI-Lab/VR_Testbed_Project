@@ -10,6 +10,5 @@ public class GonoGoExperimentGenerator : MonoBehaviour
     {
         int ntrial = session.settings.GetInt("ntrials");
         Block sess = session.CreateBlock(ntrial);
-        sess.settings.SetValue("timeout_period", 2.0);
     }
 }
