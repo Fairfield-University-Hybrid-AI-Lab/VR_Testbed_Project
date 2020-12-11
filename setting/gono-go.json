@@ -1,0 +1,5 @@
+{
+    "ntrials": 12,
+    "timeout_period": 2.0,
+    "observe_disappear_duration": 1.0
+}
