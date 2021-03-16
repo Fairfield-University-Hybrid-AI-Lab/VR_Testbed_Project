@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UXF;
 
 public class VisualSearchTrialSetup : MonoBehaviour
 {
@@ -29,17 +30,17 @@ public class VisualSearchTrialSetup : MonoBehaviour
 	//grab settings and ensure values are within range
 
 	numColors = session.settings.GetInt("colors");
-        if(numColors > colors.size()) {
-	    numColors = colors.size() -1;
-	} else if(numColors < 1) {
-            numColors = 1;
+        if(numColors > colors.Length) {
+            numColors = colors.Length -1;
+        } else if(numColors < 1) {
+                numColors = 1;
         }
 
-	numChars = session.settings.GetInt("letters");
-        if(numChars > chars.size()) {
-	    numChars = chars.size() -1;
-	} else if(numChars < 1) {
-	    numChars = 2;
+        numChars = session.settings.GetInt("letters");
+            if(numChars > chars.Length) {
+            numChars = chars.Length -1;
+        } else if(numChars < 1) {
+            numChars = 2;
         }
     }
 
@@ -50,46 +51,46 @@ public class VisualSearchTrialSetup : MonoBehaviour
 
     void Update()
     {
-	//obscure all nodes from sight
+	    //obscure all nodes from sight
         blockPanel.setActive(true);
 
-	//pick target color and letter
+	    //pick target color and letter
         targetColor = Random.Range(0, colors.size-1);
         targetChar = Random.Range(0, chars.size-1);
-        for(x in allNodes) {
-	    Color objColor = colors[targetColor];
- 	    char objChar = chars[targetChar];
+        foreach (GameObject x in allNodes) {
+            Color objColor = colors[targetColor];
+            char objChar = chars[targetChar];
 
-	    //ensure that the target is distinct from every other node in at least one way
+            //ensure that the target is distinct from every other node in at least one way
             while(objColor == colors[targetColor] && objChar == chars[targetChar]) {
-		objColor = RandomColor();
-		objChar = RandomChar();
-	    }
+                objColor = RandomColor();
+                objChar = RandomChar();
+            }
 
-	    //programmatically set the color of the text and the text itself on each node
-	    //NOT COMPLETE
-	    x.TextMesh.setColor("_color", objColor);
-	    x.TextMesh.text = objChar;
+            //programmatically set the color of the text and the text itself on each node
+            //NOT COMPLETE
+            x.TextMesh.setColor("_color", objColor);
+            x.TextMesh.text = objChar;
 
             //SET EACH OBJECT AS 'NOT TARGET'
 
-	}
+	    }
 
-	//pick a target object and set its attributes - 
-	int randomTarget = Range.Random(0, allNodes.Length -1);
-	target = randomTarget;
-	allNodes[randomTarget].Materials.setColor(targetColor); 
-	allNodes[randomTarget].TextMesh.text = targetChar;
-        //SET OBJECT AS A TARGET?
+        //pick a target object and set its attributes - 
+        int randomTarget = Range.Random(0, allNodes.Length -1);
+        target = randomTarget;
+        allNodes[randomTarget].Materials.setColor(targetColor); 
+        allNodes[randomTarget].TextMesh.text = targetChar;
+            //SET OBJECT AS A TARGET?
 
-	//NOT COMPLETE! set the instructions for the next task
-	displayPanel.text = "Find the $(color) $(char)", colors[targetColor].toString(), chars[targetChar];
+        //NOT COMPLETE! set the instructions for the next task
+        displayPanel.text = "Find the $(color) $(char)" + colors[targetColor].toString() + chars[targetChar];
 	
     }
 
     public void BeginTrial()
     {
-	blockPanel.setActive(false);
+        blockPanel.setActive(false);
     }
 
     //HELPER METHOD TO GET RANDOM COLOR
