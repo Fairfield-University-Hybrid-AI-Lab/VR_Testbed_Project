@@ -1018,7 +1018,7 @@ PrefabInstance:
     - target: {fileID: 114916036141644208, guid: 0a3b6392f04558844bd340e68ced1ff9,
         type: 3}
       propertyPath: endAfterLastTrial
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114916036141644208, guid: 0a3b6392f04558844bd340e68ced1ff9,
         type: 3}
@@ -2361,17 +2361,6 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 305178795}
         m_MethodName: RestTimeDelay
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 832882281}
-        m_MethodName: BeginNextTrialSafe
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

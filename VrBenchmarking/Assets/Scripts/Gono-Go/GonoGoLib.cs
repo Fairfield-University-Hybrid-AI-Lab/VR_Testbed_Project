@@ -13,7 +13,7 @@ public class GonoGoLib : MonoBehaviour
         yield return new WaitForSeconds(interval_duration);
 
         //trigger next trial or pause for rest time
-        List<int> ntrial = session.settings.GetIntList("trial_to_scale_difficulty");
+        List<int> ntrial = session.settings.GetIntList("ntrial_each_block");
         int[] interval_trial = new int[ntrial.Count];
         interval_trial[0] = ntrial[0];
         for (int i = 1; i < ntrial.Count; i++)
@@ -33,7 +33,7 @@ public class GonoGoLib : MonoBehaviour
     public float getIntervalBetweenEachTrial()
     {
         //find timeout duration base on current trial number
-        List<float> interval_between_each_trial = session.settings.GetFloatList("interval_difficulty_scale");
+        List<float> interval_between_each_trial = session.settings.GetFloatList("interval_duration_for_each_block");
         int currBlock = session.currentBlockNum;
         return interval_between_each_trial[currBlock];
     }
@@ -41,6 +41,7 @@ public class GonoGoLib : MonoBehaviour
     IEnumerator RestTimeIntervalDuration()
     {
         yield return new WaitForSeconds(2.0f);
+        session.BeginNextTrialSafe();
     }
     public void RestTimeDelay()
     {
