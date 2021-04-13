@@ -1,0 +1,7 @@
+{
+    "ntrial": 10,
+    "number": true,
+    "letter": false,
+    "interval_duration": 30,
+    "number_nodes": 10
+}
