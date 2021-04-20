@@ -47,18 +47,15 @@ public class TrailMakingButtonTrigger : MonoBehaviour
     {
         string GridName = Grid.GetComponentInChildren<Text>().text;
 
-        Debug.Log(tmd.textPath.Count);
 
         //check if last value
         if (tmd.textPath.Count > 0)
         {
-            Debug.Log(tmd.textPath.First.Value);
             //correct
             if (tmd.textPath.First.Value == GridName)
             {
                 tmd.textPath.RemoveFirst();
 
-                Debug.Log("kim");
                 Grid.GetComponent<Image>().color = green.color;
                 //make button unclickable
                 Grid.GetComponent<Button>().interactable = false;

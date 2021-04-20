@@ -31,9 +31,9 @@ public class TrailMakingTooSlowToCheck : MonoBehaviour
         yield return new WaitForSeconds(interval_duration);
 
         //result
+        string temp = string.Join(",", tmd.wrong.ToArray());
         session.CurrentTrial.result["outcome"] = "fail";
-        //session.CurrentTrial.result["on path that wrongly selected"] = Array;
-        //session.CurrentTrial.result["correct_path"] = Array;
+        session.CurrentTrial.result["wrong_path"] = temp;
 
         //end trail
         session.EndCurrentTrial();
