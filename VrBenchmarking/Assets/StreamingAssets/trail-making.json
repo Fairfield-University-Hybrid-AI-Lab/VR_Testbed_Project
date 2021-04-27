@@ -1,0 +1,8 @@
+{
+    "ntrial": 10,
+    "number": true,
+    "letter": false,
+    "interval_duration": 30,
+    "number_nodes": 10,
+    "number_of_grids": 55
+}
