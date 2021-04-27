@@ -1,4 +1,6 @@
 {
+    "trial_to_scale_difficulty": [10,20,35,40],
+    "timeout_periods_difficulty_scale":[3,2,1.5,1,0.5],
     "ntrials": 12,
     "timeout_period": 2.0,
     "observe_disappear_duration": 1.0

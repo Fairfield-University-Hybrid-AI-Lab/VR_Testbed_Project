@@ -1,4 +1,6 @@
 {
+    "ntrial_each_block": [3,3,3,3],
+    "interval_duration_for_each_block":[1,1.5,1,0.8,0.5],
     "ntrials": 12,
     "timeout_period": 2.0,
     "observe_disappear_duration": 1.0
