@@ -9,11 +9,15 @@ public class GonoGoExperimentGenerator : MonoBehaviour
     public void Generate(Session session)
     {
         List<int> interval = session.settings.GetIntList("ntrial_each_block");
-        //int ntrial = interval[interval.Count - 1];
+        List<float> interval_between_each_trial = session.settings.GetFloatList("interval_duration_for_each_block");
+        //making sure the number of ntrail each block and interval duration between each trail is the same
+        if (interval.Count != interval_between_each_trial.Count)
+        {
+            Application.Quit();
+        }
         foreach (int i in interval)
         {
             session.CreateBlock(i);
         }
-        //Block block1 = session.CreateBlock(ntrial);
     }
 }
