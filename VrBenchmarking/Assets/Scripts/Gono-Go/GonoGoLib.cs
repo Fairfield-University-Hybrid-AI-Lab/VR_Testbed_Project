@@ -40,6 +40,7 @@ public class GonoGoLib : MonoBehaviour
     //Delay after clicking button
     IEnumerator RestTimeIntervalDuration()
     {
+        float rest_time = session.settings.GetFloat("rest_time_duration");
         yield return new WaitForSeconds(2.0f);
         session.BeginNextTrialSafe();
     }

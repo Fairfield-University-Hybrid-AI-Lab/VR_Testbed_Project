@@ -10,7 +10,8 @@ public class TrailMakingExperimentGenerator : MonoBehaviour
     {
         int ntrial = session.settings.GetInt("ntrial");
         int nodes = session.settings.GetInt("number_nodes");
-        if (nodes > 56)
+        int grids = session.settings.GetInt("number_of_grids");
+        if (nodes > grids)
         {
             session.End();
         }
