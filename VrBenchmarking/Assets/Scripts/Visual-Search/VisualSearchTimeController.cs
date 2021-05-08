@@ -18,15 +18,16 @@ public class VisualSearchTimeController : MonoBehaviour
     }
     IEnumerator ObserveDisappearDuration()
     {
-        float timeForObserveObjectDisappear = session.CurrentTrial.settings.GetFloat("time_between_trials");
-        
+        Debug.Log("Getting time_between_trials");
+        float timeForObserveObjectDisappear = session.settings.GetFloat("time_between_trials");
+        Debug.Log("Got value: " + timeForObserveObjectDisappear);
         yield return new WaitForSeconds(timeForObserveObjectDisappear);
         Debug.Log("Starting next trial from 'time controller'");
         session.BeginNextTrialSafe();
     }
     IEnumerator Countdown()
     {
-        float timeoutPeriod = session.CurrentTrial.settings.GetFloat("time_limit");
+        float timeoutPeriod = session.settings.GetFloat("time_limit");
         Debug.Log("Starting countdown for " + timeoutPeriod + "seconds");
         yield return new WaitForSeconds(timeoutPeriod);
 
