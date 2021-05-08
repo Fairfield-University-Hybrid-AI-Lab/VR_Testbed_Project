@@ -48,6 +48,8 @@ public class VisualSearchTrialSetup : MonoBehaviour
 
         int numTrials = session.settings.GetInt("ntrials");
         session.CreateBlock(numTrials);
+
+        session.endAfterLastTrial = true;
     }
 
     void Start()
